@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/gnunicorn/node-safe-client/issues"
   },
-  "homepage": "https://github.com/gnunicorn/node-safe-client#readme"
+  "homepage": "https://github.com/gnunicorn/node-safe-client#readme",
+  "dependencies": {
+    "weak": "^1.0.1"
+  }
 }
