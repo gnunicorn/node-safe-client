@@ -3,25 +3,24 @@ const FFI = require('ffi');
 
 const dir = path.dirname(__filename);
 
-const t = require('./types');
-const utils = require('./utils');
+const api = require('./api');
 
-// const api = require('api');
-const ffiFunctions = {
-	// App functions
-	app_unregistered: [t.i32 ,['pointer', 'pointer', t.AppPtr]],
-	// app_registered: [t.i32 , ['pointer', 'pointer', t.App]],
+let ffiFunctions = {};
+let mappings = {}
 
+api.forEach(function(mod){
+  if (mod.functions ){
+    Object.assign(ffiFunctions, mod.functions);
+  }
+  if (mod.api) {
+    Object.assign(mappings, mod.api);
+  }
+});
 
-};
+const ffi = FFI.Library(path.join(dir, 'libsafe_app'), ffiFunctions);
 
+for (key in mappings) {
+  ffi[key] = mappings[key](ffi, ffi[key]);
+}
 
-
-// for (var modName in api) {
-// 	if (api[modeName].ffiFunctionsToRegister){
-// 		Object.assign(ffiFunctions, api[modeName].ffiFunctionsToRegister)
-// 	}
-// }
-
-
-module.exports = FFI.Library(path.join(dir, 'libsafe_app'), ffiFunctions);
+module.exports = ffi;

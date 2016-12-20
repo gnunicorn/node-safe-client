@@ -1,6 +1,11 @@
-import ImmutableData from "./immutable";
-import Container from './container';
-import MutableData from './mutable';
-import Ipc from './ipc';
+const ImmutableData =  require("./immutable");
+const Container =  require('./container');
+const MutableData =  require('./mutable');
+const Auth =  require('./auth');
 
-export {ImmutableData, MutableData, Container, Ipc};
+module.exports = {
+  ImmutableData: ImmutableData,
+  MutableData: MutableData,
+  Container: Container,
+  Auth: Auth
+};

@@ -1,5 +1,7 @@
-export default class Container {
+class Container {
 	constructor(con) {
 		this._con = con
 	}
 }
+
+module.exports = Container;
