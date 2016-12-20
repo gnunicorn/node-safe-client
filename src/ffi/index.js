@@ -1,7 +1,9 @@
+const path = require('path');
+const dir = path.dirname(__filename);
 const ffi = require('ffi');
 
-export ffi.Library('./libsafe_core', {
-	app_unregistered: [,[]],
-	app_registered: [,[]],
+module.exports = ffi.Library(path.join(dir, 'libsafe_app'), {
+	// app_unregistered: [,[]],
+	// app_registered: [,[]],
 
 });

@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "cd native/safe_app && cargo build --release && cd ../../ && cp -f native/target/release/*safe_app* ./src/ffi",
+    "pretest": "cd native/safe_app&& cargo build --features \"use-mock-routing\" && cd ../../ && cp -f native/target/debug/*safe_app* ./src/ffi",
+    "test": "mocha tests/"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,9 @@
   "homepage": "https://github.com/gnunicorn/node-safe-client#readme",
   "dependencies": {
     "weak": "^1.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.1.2"
   }
 }
